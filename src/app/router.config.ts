@@ -10,7 +10,7 @@ import { AnyRolesGuard } from './security/auth-guards/any-roles.guard';
 
 export const routerConfig: Routes = [
   {
-    path: 'roomList',
+    path: 'roomlist',
     component: RoomListComponent
   },
   {
