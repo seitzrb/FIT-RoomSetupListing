@@ -1,0 +1,8 @@
+After Cloaning
+
+1. In Terminal run "npm install" to install angular libraries
+2. Afer install test execution by running "ng serve -c=local -o" in terminal
+     In the browser navigate to http://localhost:4200/roomlist to check for data being downloaded
+3. Your services are in app/core/services
+   Your model is in app/core/model
+   Your component is in app/core/rooms
