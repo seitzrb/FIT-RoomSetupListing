@@ -1,0 +1,24 @@
+<div class='card'>
+    <div class='card-header'>
+room list
+    </div>
+    <div class='card-body'>
+        <div class='table-responsive'>
+            <table class='rooms' *ngIf='rooms && rooms.length'>
+                <thead>
+                    <tr>
+                        <th>Meeting Rooms</th>
+                        <th>Calendar Address</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor='let room of rooms'>
+                    <tr>
+                        <td>{{room.gmailResourceName}}</td>
+                        <td>{{room.gmailCalendarAddress}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
