@@ -6,3 +6,4 @@ After Cloaning
 3. Your services are in app/core/services
    Your model is in app/core/model
    Your component is in app/core/rooms
+4. Modify roomList.component(.html/.ts) to use Telerik Grid
