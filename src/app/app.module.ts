@@ -12,6 +12,12 @@ import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { LcAuthService } from './security/lc-auth/lc-auth.service';
 import { HttpExampleComponent } from './http-example/http-example.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+
+
+
 
 
 export function jwtOptionsFactory(authService) {
@@ -44,7 +50,10 @@ export function jwtOptionsFactory(authService) {
         useFactory: jwtOptionsFactory,
         deps: [LcAuthService]
       }
-    })
+    }),
+    GridModule,
+    BrowserAnimationsModule,
+    ButtonsModule
   ],
   providers: [LcAuthService],
   bootstrap: [AppComponent]
