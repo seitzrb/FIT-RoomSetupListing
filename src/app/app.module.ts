@@ -14,6 +14,10 @@ import { HttpExampleComponent } from './http-example/http-example.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+
+
+
 
 export function jwtOptionsFactory(authService) {
   return {
@@ -47,7 +51,8 @@ export function jwtOptionsFactory(authService) {
       }
     }),
     GridModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ButtonsModule
   ],
   providers: [LcAuthService],
   bootstrap: [AppComponent]
