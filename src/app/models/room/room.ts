@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 export class Room {
   gmailResourceName: string;
   gmailCalendarAddress: string;
+  roomCapacity: number;
 }
 
 

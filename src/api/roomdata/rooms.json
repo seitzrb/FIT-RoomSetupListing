@@ -1,18 +1,22 @@
 [
     {
         "gmailResourceName": "Jury-Assembly-B-RM2133",
-        "gmailCalendarAddress": "co.larimer.co.us_38303539393933373931@resource.calendar.google.com"
+        "gmailCalendarAddress": "co.larimer.co.us_38303539393933373931@resource.calendar.google.com",
+        "roomCapacity": 12
     },
     {
         "gmailResourceName": "RM-SOAD Comp Lab (16)",
-        "gmailCalendarAddress": "co.larimer.co.us_39373032393132372d333734@resource.calendar.google.com"
+        "gmailCalendarAddress": "co.larimer.co.us_39373032393132372d333734@resource.calendar.google.com",
+        "roomCapacity": 23
     },
     {
         "gmailResourceName": "RM-FC_200WO_150_Carter Lake_75",
-        "gmailCalendarAddress": "co.larimer.co.us_7265736f75726365313935@resource.calendar.google.com"
+        "gmailCalendarAddress": "co.larimer.co.us_7265736f75726365313935@resource.calendar.google.com",
+        "roomCapacity": 34
     },
     {
         "gmailResourceName": "RM-FC_200WO_152_Boyd Lake_75",
-        "gmailCalendarAddress": "co.larimer.co.us_7265736f75726365313936@resource.calendar.google.com"
+        "gmailCalendarAddress": "co.larimer.co.us_7265736f75726365313936@resource.calendar.google.com",
+        "roomCapacity": 45
     }
 ]
