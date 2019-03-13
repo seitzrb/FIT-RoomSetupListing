@@ -24,7 +24,7 @@ export function jwtOptionsFactory(authService) {
     tokenGetter: () => {
       return authService.getAccessToken();
     },
-    whitelistedDomains: ['yourApiDomainHere']
+    whitelistedDomains: ['localhost:4200', 'vard12.lc.gov', 'vart12.lc.gov']
   };
 }
 
