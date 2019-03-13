@@ -10,7 +10,7 @@ import { tap } from 'rxjs/operators';
 
 export class RoomService {
   // api/products/products.json
-    private roomUrl = 'src/api/roomdata/rooms.json';
+    private roomUrl = 'https://vard12.lc.gov/dataservices/webapi/roomsetup/api/Room?pageNumber=1&pageSize=5';
 
     constructor(private http: HttpClient) {}
 
