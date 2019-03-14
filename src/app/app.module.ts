@@ -16,9 +16,6 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 
-
-
-
 export function jwtOptionsFactory(authService) {
   return {
     tokenGetter: () => {

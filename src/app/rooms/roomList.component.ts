@@ -1,17 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomService } from '../core/services/room.service';
 import { Room } from '../models/room/room';
-import {
-  process,
-  State,
-  SortDescriptor,
-  orderBy } from '@progress/kendo-data-query';
-
-import {
-  GridComponent,
-  GridDataResult,
-  DataStateChangeEvent
-} from '@progress/kendo-angular-grid';
+import { process, State, } from '@progress/kendo-data-query';
+import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 
 
 @Component({
@@ -47,5 +38,8 @@ export class RoomListComponent implements OnInit {
         this.rooms = roomEntries;
         this.gridData = process(this.rooms, this.state);
       });
+    }
+    createNewRoom(): Room {
+      return new Room();
     }
 }

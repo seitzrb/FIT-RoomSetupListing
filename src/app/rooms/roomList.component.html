@@ -1,21 +1,32 @@
- <div *ngIf='gridData'>
-    <kendo-grid
-    [data]="gridData"
-    [height]="410"
-    [data]="gridData"
-    [pageSize]="state.take"
-    [skip]="state.skip"
-    [sort]="state.sort"
-    [filter]="state.filter"
-    [sortable]="true"
-    [pageable]="true"
-    [filterable]="true"
-    (dataStateChange)="dataStateChange($event)">
-      <kendo-grid-column field="name" title="Name" width="250">
-      </kendo-grid-column>
-      <kendo-grid-column field="email" title="Gmail Address">
-      </kendo-grid-column>
-      <kendo-grid-column field="capacity" title="Capacity" width="80">
-      </kendo-grid-column>
+ <div class="listPadding" *ngIf='gridData'>
+    <form novalidate #myForm="ngForm">
+      <kendo-grid
+        [kendoGridTemplateEditing]="createNewRoom"
+        [data]="gridData"
+        [height]="410"
+        [data]="gridData"
+        [pageSize]="state.take"
+        [skip]="state.skip"
+        [sort]="state.sort"
+        [filter]="state.filter"
+        [sortable]="true"
+        [pageable]="true"
+        [filterable]="true"
+        (dataStateChange)="dataStateChange($event)">
+        <kendo-grid-column field="name" title="Name" width="350">
+        </kendo-grid-column>
+        <kendo-grid-column field="email" title="Gmail Address">
+        </kendo-grid-column>
+        <kendo-grid-column field="capacity" title="Capacity" width="120">
+        </kendo-grid-column>
+        <kendo-grid-command-column title="command" width="150">
+          <ng-template kendoGridCellTemplate let-isNew="isNew">
+            <button kendoGridEditCommand type="button" [primary]="true">Edit</button>
+            <button kendoGridRemoveCommand type="button">Remove</button>
+            <button kendoGridSaveCommand type="button" [disabled]="myForm.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
+            <button kendoGridCancelCommand type="button">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+          </ng-template>
+        </kendo-grid-command-column>
     </kendo-grid>
+  </form>
 </div>
