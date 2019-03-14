@@ -24,36 +24,28 @@ export class RoomListComponent implements OnInit {
     rooms: Room[] = [];
     public multiple = false;
     public allowUnsort = true;
-    public sort: SortDescriptor[] = [{
-      field: 'gmailResourceName',
-      dir: 'asc'
-    }];
     public state: State = {
-      skip: 0
-
-
+      skip: 0,
+      sort:  [{
+        field: 'name',
+        dir: 'asc'
+      }]
     };
 
     public gridData: GridDataResult;
+
+    constructor( public roomService: RoomService) {
+    }
 
     public dataStateChange(state: DataStateChangeEvent): void {
         this.state = state;
         this.gridData = process(this.rooms, this.state);
     }
 
-    constructor( public roomService: RoomService) {
+    ngOnInit(): void {
+      this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
+        this.rooms = roomEntries;
+        this.gridData = process(this.rooms, this.state);
+      });
     }
-
-    public sortChange(sort: SortDescriptor[]): void {
-      this.sort = sort;
-  }
-
-
-  ngOnInit(): void {
-     this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
-      this.rooms = roomEntries;
-
-      this.gridData = process(this.rooms, this.state);
-     });
-  }
 }

@@ -16,11 +16,12 @@ export class RoomService extends BaseService {
     constructor(private http: HttpClient) { super(); }
 
     getRooms(): Observable<Room[]> {
-      const options = { headers: new HttpHeaders({'Accept': 'application/json'})};
-      return this.http.get<Room[]>(this.roomUrl, options)
+      // const options = { headers: new HttpHeaders({'Accept': 'application/json'})};
+      return this.http.get<Room[]>(this.roomUrl)
          .pipe (
              catchError((err) => 
-                 throwError(err.Message)
+                  throwError(err.Message)
+                 
              )   
         
          );
