@@ -7,9 +7,10 @@ import { CommonModule } from '@angular/common';
   declarations: []
 })
 export class Room {
-  gmailResourceName: string;
-  gmailCalendarAddress: string;
-  roomCapacity: number;
+  roomId: number;
+  name: string;
+  email: string;
+  capacity: number;
 }
 
 

@@ -1,22 +1,29 @@
 import { Room } from './../../models/room/room';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
+import { BaseService } from '../base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class RoomService {
+export class RoomService extends BaseService {
   // api/products/products.json
-    private roomUrl = 'https://vard12.lc.gov/dataservices/webapi/roomsetup/api/Room?pageNumber=1&pageSize=5';
+    roomUrl = "https://vard12.lc.gov/dataservices/webapi/roomsetup/api/Room";
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { super(); }
 
     getRooms(): Observable<Room[]> {
-        return this.http.get<Room[]>(this.roomUrl).pipe(
-            tap(data => console.log('All: ' + JSON.stringify(data)))
-        );
+      const options = { headers: new HttpHeaders({'Accept': 'application/json'})};
+      return this.http.get<Room[]>(this.roomUrl, options)
+         .pipe (
+             catchError((err) => 
+                 throwError(err.Message)
+             )   
+        
+         );
+
     }
 }
