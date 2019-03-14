@@ -11,7 +11,7 @@ import { BaseService } from '../base.service';
 
 export class RoomService extends BaseService {
   // api/products/products.json
-    roomUrl = "https://vard12.lc.gov/dataservices/webapi/roomsetup/api/Room";
+    roomUrl = "https://vard12.lc.gov/dataservices/WebApi/RoomSetup/api/Room";
 
     constructor(private http: HttpClient) { super(); }
 
