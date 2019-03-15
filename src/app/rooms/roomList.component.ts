@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { RoomService } from '../core/services/room.service';
 import { Room } from '../models/room/room';
 import { process, State, } from '@progress/kendo-data-query';
@@ -16,8 +16,8 @@ export class RoomListComponent implements OnInit {
     public multiple = false;
     public allowUnsort = true;
 
+    private roomService: RoomService;
     private editedRowIndex: number;
-    private editService: EditService;
     private editedRoom: Room;
 
     public state: State = {
@@ -30,7 +30,8 @@ export class RoomListComponent implements OnInit {
 
     public gridData: GridDataResult;
 
-    constructor( public roomService: RoomService) {
+    constructor(@Inject(RoomService) editServiceFactory: any) {
+      this.roomService = editServiceFactory();
     }
 
     public dataStateChange(state: DataStateChangeEvent): void {
@@ -61,6 +62,11 @@ export class RoomListComponent implements OnInit {
       this.closeEditor(sender);
       this.editedRowIndex = rowIndex;
       this.editedRoom = Object.assign({}, dataItem);
+    }
+
+    removeHandler({sender, rowIndex, dataItem}) {
+      console.log('removeHandler');
+      this.roomService.deleteRoom(dataItem).subscribe();
     }
 
     private closeEditor(grid, rowIndex = this.editedRowIndex) {
