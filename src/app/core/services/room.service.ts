@@ -26,4 +26,18 @@ export class RoomService extends BaseService {
              )
          );
     }
+
+    putRoom(room: Room): Observable<Room> {
+      let roomUrl = this.roomUrl + '/' + room.roomId;
+//      updateRoom(room): Observable<Room> {
+        console.log('UpdateCall');
+      console.log(room);
+
+      return this.http.put<Room>(roomUrl, room)
+        .pipe(
+          catchError((err) => {
+            return throwError(err.message);
+          })
+        );
+    }
 }
