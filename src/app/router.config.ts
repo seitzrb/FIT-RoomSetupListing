@@ -41,6 +41,7 @@ export const routerConfig: Routes = [
   },
   {
     path: '',
-    children: []
+    redirectTo: '/roomlist',
+    pathMatch: 'full'
   }
 ];

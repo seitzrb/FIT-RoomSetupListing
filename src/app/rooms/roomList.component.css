@@ -2,7 +2,7 @@ thead {
     color: #337AB7
 }
 div.listPadding {
-  padding-top: 50px;
+  padding-top: 10px;
   padding-right: 80px;
   padding-bottom: 20px;
   padding-left: 80px;
@@ -17,5 +17,3 @@ div.listPadding {
   content: "\\f148";
   font-family: FontAwesome;
 }
-
-
