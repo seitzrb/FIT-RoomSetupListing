@@ -18,6 +18,9 @@
         (remove)="removeHandler($event)"
 
         (dataStateChange)="dataStateChange($event)">
+        <ng-template kendoGridToolbarTemplate>
+          <button kendoGridAddCommand type="button">Add new</button>
+        </ng-template>
         <kendo-grid-column field="roomId" title="ID" width="50" >
         </kendo-grid-column>
         <kendo-grid-column field="name" title="Name" width="350">
