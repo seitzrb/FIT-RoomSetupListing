@@ -16,7 +16,6 @@ export class RoomListComponent implements OnInit {
     public multiple = false;
     public allowUnsort = true;
 
-    private roomService: RoomService;
     private editedRowIndex: number;
     private editedRoom: Room;
 
@@ -30,8 +29,7 @@ export class RoomListComponent implements OnInit {
 
     public gridData: GridDataResult;
 
-    constructor(@Inject(RoomService) editServiceFactory: any) {
-      this.roomService = editServiceFactory();
+    constructor(private roomService: RoomService) {
     }
 
     public dataStateChange(state: DataStateChangeEvent): void {
@@ -45,6 +43,7 @@ export class RoomListComponent implements OnInit {
         this.gridData = process(this.rooms, this.state);
       });
     }
+
     createNewRoom(): Room {
       return new Room();
     }
@@ -66,7 +65,13 @@ export class RoomListComponent implements OnInit {
 
     removeHandler({sender, rowIndex, dataItem}) {
       console.log('removeHandler');
-      this.roomService.deleteRoom(dataItem).subscribe();
+      this.roomService.deleteRoom(dataItem).subscribe(() => {
+        this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
+          this.rooms = roomEntries;
+          this.gridData = process(this.rooms, this.state);
+        });
+      }
+      );
     }
 
     private closeEditor(grid, rowIndex = this.editedRowIndex) {

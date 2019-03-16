@@ -8,12 +8,12 @@ import { tap, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 
-export class RoomService extends BehaviorSubject<any[]> {
+export class RoomService {
   // api/products/products.json
     roomUrl = 'https://vard12.lc.gov/dataservices/WebApi/RoomSetup/api/Room';
     roomUrlx = 'src/api/roomdata/rooms.json';
 
-    constructor(private http: HttpClient) { super([]); }
+    constructor(private http: HttpClient) {  }
 
     getRooms(): Observable<Room[]> {
       let roomUrl = this.roomUrl;
