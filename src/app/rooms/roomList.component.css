@@ -7,3 +7,15 @@ div.listPadding {
   padding-bottom: 20px;
   padding-left: 80px;
 }
+
+.k-hierarchy-cell .k-plus::before {
+  content: "\\f149";
+  font-family: FontAwesome;
+}
+
+.k-hierarchy-cell .k-minus::before {
+  content: "\\f148";
+  font-family: FontAwesome;
+}
+
+

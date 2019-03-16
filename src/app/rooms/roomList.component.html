@@ -12,16 +12,20 @@
         [sortable]="true"
         [pageable]="true"
         [filterable]="true"
+        [navigable]="true"
 
         (edit)="editHandler($event)"
         (save)="saveHandler($event)"
         (remove)="removeHandler($event)"
+        (add)="addHandler($event, myForm)"
 
         (dataStateChange)="dataStateChange($event)">
-        <ng-template kendoGridToolbarTemplate>
-          <button kendoGridAddCommand type="button">Add new</button>
+        <ng-template kendoGridToolbarTemplate kendoTooltip>
+          <button kendoGridAddCommand type="button">
+              <i class="fa fa-plus" area-hidden="true" style="color: blue" title="Add New Room Setup"></i>
+          </button>
         </ng-template>
-        <kendo-grid-column field="roomId" title="ID" width="50" >
+        <kendo-grid-column field="roomId" title="ID" width="100" [hidden]=true>
         </kendo-grid-column>
         <kendo-grid-column field="name" title="Name" width="350">
             <ng-template kendoGridEditTemplate let-dataItem="dataItem">
@@ -29,21 +33,29 @@
             </ng-template>
         </kendo-grid-column>
         <kendo-grid-column field="email" title="Gmail Address">
-            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                <input [(ngModel)]="dataItem.email" name="email" class="k-textbox" required/>
-            </ng-template>
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [(ngModel)]="dataItem.email" name="email" class="k-textbox" required/>
+          </ng-template>
         </kendo-grid-column>
         <kendo-grid-column field="capacity" title="Capacity" editor="numeric" filter="numeric" format="{0:n0}" width="155">
-            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                <input [(ngModel)]="dataItem.capacity" name="capacity" class="k-textbox" type="number" required/>
-            </ng-template>
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [(ngModel)]="dataItem.capacity" name="capacity" class="k-textbox" type="number" required/>
+          </ng-template>
         </kendo-grid-column>
-        <kendo-grid-command-column title="Command" width="150">
+        <kendo-grid-command-column title="" width="100">
           <ng-template kendoGridCellTemplate let-isNew="isNew">
-            <button kendoGridEditCommand type="button" [primary]="true">Edit</button>
-            <button kendoGridRemoveCommand type="button">Remove</button>
-            <button kendoGridSaveCommand type="button" [disabled]="myForm.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
-            <button kendoGridCancelCommand type="button">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+            <button kendoGridEditCommand type="button" [primary]="true" style="background: transparent; border: transparent">
+              <i class="fa fa-edit" area-hidden="true" style="color: blue" title="Edit Room Setup"></i>
+            </button>
+            <button kendoGridRemoveCommand type="button" style="background: transparent; border: transparent">
+                <i class="fa fa-trash" area-hidden="true" style="color: blue" title="Delete Room Setup"></i>
+            </button>
+            <button kendoGridSaveCommand type="button" [disabled]="myForm.invalid">
+              <i class="fa fa-save" area-hidden="true" style="color: blue" title="Save Room Setup"></i>
+            </button>
+            <button kendoGridCancelCommand type="button">
+              <i class="fa fa-ban" area-hidden="true" style="color: blue" title="Cancel"></i>
+            </button>
           </ng-template>
         </kendo-grid-command-column>
     </kendo-grid>

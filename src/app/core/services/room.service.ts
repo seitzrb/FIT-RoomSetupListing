@@ -16,8 +16,7 @@ export class RoomService {
     constructor(private http: HttpClient) {  }
 
     getRooms(): Observable<Room[]> {
-      let roomUrl = this.roomUrl;
-      // const options = { headers: new HttpHeaders({'Accept': 'application/json'})};
+      const roomUrl = this.roomUrl;
       return this.http.get<Room[]>(roomUrl)
          .pipe (
              catchError((err) =>
@@ -27,12 +26,24 @@ export class RoomService {
     }
 
     putRoom(room: Room): Observable<Room> {
-      let roomUrl = this.roomUrl + '/' + room.roomId;
-//      updateRoom(room): Observable<Room> {
-        console.log('UpdateCall');
+      const roomUrl = this.roomUrl + '/' + room.roomId;
+      console.log('UpdateCall');
       console.log(room);
 
       return this.http.put<Room>(roomUrl, room)
+        .pipe(
+          catchError((err) => {
+            return throwError(err.message);
+          })
+        );
+    }
+
+    postRoom(room: Room): Observable<Room> {
+      const roomUrl = this.roomUrl;
+      console.log('InsertCall');
+      console.log(room);
+
+      return this.http.post<Room>(roomUrl, room)
         .pipe(
           catchError((err) => {
             return throwError(err.message);

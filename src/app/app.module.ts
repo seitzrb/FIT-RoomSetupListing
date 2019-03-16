@@ -15,6 +15,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { TooltipModule } from '@progress/kendo-angular-tooltip';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+
+
 
 export function jwtOptionsFactory(authService) {
   return {
@@ -49,7 +53,9 @@ export function jwtOptionsFactory(authService) {
     }),
     GridModule,
     BrowserAnimationsModule,
-    ButtonsModule
+    ButtonsModule,
+    TooltipModule,
+    DialogsModule
   ],
   providers: [LcAuthService],
   bootstrap: [AppComponent]

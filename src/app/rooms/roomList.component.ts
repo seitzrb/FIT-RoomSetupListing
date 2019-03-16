@@ -18,9 +18,11 @@ export class RoomListComponent implements OnInit {
 
     private editedRowIndex: number;
     private editedRoom: Room;
+    public dialogOpened = false;
 
     public state: State = {
       skip: 0,
+      take: 200,
       sort:  [{
         field: 'name',
         dir: 'asc'
@@ -49,14 +51,29 @@ export class RoomListComponent implements OnInit {
     }
 
     saveHandler({sender, rowIndex, dataItem, isNew}) {
-      this.roomService.putRoom(dataItem).subscribe(
-        res => {
-          sender.closeRow(rowIndex);
-        }
-      );
+      if (isNew) {
+        this.roomService.postRoom(dataItem).subscribe(
+          res => {
+            sender.closeRow(rowIndex);
+          }
+        );
+      } else {
+        this.roomService.putRoom(dataItem).subscribe(
+          res => {
+            sender.closeRow(rowIndex);
+          }
+        );
+      }
     }
 
-    editHandler({sender, rowIndex, dataItem}) {
+    public addHandler({sender}, formInstance) {
+      formInstance.reset();
+      this.closeEditor(sender);
+
+      sender.addRow(new Room());
+  }
+
+    public editHandler({sender, rowIndex, dataItem}) {
       console.log('editHandler');
       this.closeEditor(sender);
       this.editedRowIndex = rowIndex;
@@ -76,8 +93,15 @@ export class RoomListComponent implements OnInit {
 
     private closeEditor(grid, rowIndex = this.editedRowIndex) {
       grid.closeRow(rowIndex);
-//      this.roomService.putRoom(this.editedRoom);
       this.editedRowIndex = undefined;
       this.editedRoom = undefined;
+  }
+
+  public close(component) {
+    this[component + 'Opened'] = false;
+  }
+
+  public open(component) {
+    this[component + 'Opened'] = true;
   }
 }
