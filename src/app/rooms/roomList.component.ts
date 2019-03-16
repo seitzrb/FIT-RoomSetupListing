@@ -19,6 +19,8 @@ export class RoomListComponent implements OnInit {
     private editedRowIndex: number;
     private editedRoom: Room;
     public windowOpened = false;
+    public dialogOpened = false;
+    public roomToDelete: Room;
 
     public state: State = {
       skip: 0,
@@ -97,11 +99,32 @@ export class RoomListComponent implements OnInit {
       this.editedRoom = undefined;
   }
 
+  public saveRow(room: Room) {
+    console.log(room);
+    this.roomToDelete = room;
+  }
+
+  public deleteRoom() {
+    console.log('deleteRoom');
+      this.roomService.deleteRoom(this.roomToDelete).subscribe(() => {
+        this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
+          this.rooms = roomEntries;
+          this.gridData = process(this.rooms, this.state);
+        });
+      }
+      );
+  }
+
   public close(component) {
     this[component + 'Opened'] = false;
   }
 
   public open(component) {
     this[component + 'Opened'] = true;
+  }
+
+  public action(status) {
+    console.log(`Dialog result: ${status}`);
+    this.dialogOpened = false;
   }
 }
