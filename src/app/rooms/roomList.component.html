@@ -22,19 +22,25 @@
         (dataStateChange)="dataStateChange($event)">
         <ng-template kendoGridToolbarTemplate kendoTooltip>
           <button kendoGridAddCommand type="button">
-              <i class="fa fa-plus" area-hidden="true" style="color: blue" title="Add New Room Setup"></i>
+            <i class="fa fa-plus" area-hidden="true" style="color: blue" title="Add New Room Setup"></i>
           </button>
         </ng-template>
         <kendo-grid-column field="roomId" title="ID" width="100" [hidden]=true>
         </kendo-grid-column>
         <kendo-grid-column field="name" title="Name" width="350">
-            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                <input [(ngModel)]="dataItem.name" name="name" class="k-textbox" required/>
-            </ng-template>
-        </kendo-grid-column>
-        <kendo-grid-column field="email" title="Gmail Address">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-            <input [(ngModel)]="dataItem.email" name="email" class="k-textbox" required/>
+            <input [(ngModel)]="dataItem.name" name="name" class="k-textbox" required/>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="email" title="Gmail Address" [sortable]="false">
+          <ng-template kendoGridHeaderTemplate>
+            Gmail Address
+            <button kendoButton type="button" [primary]="true" style="background: transparent; border: transparent" *ngIf="!windowOpened" (click)="open('window')">
+              <i class="fa fa-info-circle" area-hidden="true" style="color: blue" title="Add New Room Setup"></i>
+            </button>
+          </ng-template>
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [(ngModel)]="dataItem.email" name="email" class="k-textbox" required>
           </ng-template>
         </kendo-grid-column>
         <kendo-grid-column field="capacity" title="Capacity" editor="numeric" filter="numeric" format="{0:n0}" width="155">
@@ -59,5 +65,8 @@
           </ng-template>
         </kendo-grid-command-column>
     </kendo-grid>
+    <kendo-window [minWidth]="200" [minHeight]="125" title="About" *ngIf="windowOpened" (close)="close('window')">
+      <p style="text-align: center;">Additional info</p>
+    </kendo-window>
   </form>
 </div>

@@ -18,7 +18,7 @@ export class RoomListComponent implements OnInit {
 
     private editedRowIndex: number;
     private editedRoom: Room;
-    public dialogOpened = false;
+    public windowOpened = false;
 
     public state: State = {
       skip: 0,
