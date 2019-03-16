@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { TooltipModule } from '@progress/kendo-angular-tooltip';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { NotificationModule } from '@progress/kendo-angular-notification';
+
 
 
 
@@ -55,7 +57,8 @@ export function jwtOptionsFactory(authService) {
     BrowserAnimationsModule,
     ButtonsModule,
     TooltipModule,
-    DialogsModule
+    DialogsModule,
+    NotificationModule
   ],
   providers: [LcAuthService],
   bootstrap: [AppComponent]
