@@ -73,13 +73,13 @@
     </kendo-dialog>
     <kendo-window [minWidth]="200" [minHeight]="125" title="Instructions on finding Gmail Address for a Room"
                   *ngIf="windowOpened" (close)="close('window')">
-      <p>1. In a Gmail Administrator account, click on Settings > Manage this Domain.</p>
-      <p>2. Click on Buildings and Resources.</p>
-      <p>3. Under Resource Management, click on Edit Resources.</p>
-      <p>4. In Resources Grid, locate and click on Room row.</p>
-      <p>5. A detail page for the room should appear, and the email for the room should be on </p>
-      <p>the left-hand side, entitled "Resource email." Select and copy email text to insert </p>
-      <p>into column.</p>
+      <ol>
+        <li>In a Gmail Administrator account, click on Settings > Manage this Domain.</li>
+        <li>Click on Buildings and Resources.</li>
+        <li>Under Resource Management, click on Edit Resources.</li>
+        <li>In Resources Grid, locate and click on Room row.</li>
+        <li>A detail page for the room should appear, and the email for the room should be on the left-hand side, entitled "Resource email." Select and copy email text to insert into column.</li>
+      </ol>
     </kendo-window>
   </form>
 </div>
