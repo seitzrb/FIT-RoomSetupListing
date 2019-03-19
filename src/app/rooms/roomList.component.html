@@ -3,7 +3,7 @@
     <kendo-grid
       [kendoGridTemplateEditing]="createNewRoom"
       [data]="gridData"
-      [height]="410"
+      [height]="610"
       [data]="gridData"
       [pageSize]="state.take"
       [skip]="state.skip"
@@ -15,7 +15,7 @@
       [navigable]="true"
       (edit)="editHandler($event)"
       (save)="saveHandler($event)"
-      (remove)="removeHandler($event)"
+      (remove)="removeHandler($event); open('dialog');"
       (add)="addHandler($event, myForm)"
       (cancel)="cancelHandler($event)"
       (dataStateChange)="dataStateChange($event)">
@@ -52,7 +52,7 @@
           <button kendoGridEditCommand type="button" [primary]="true" style="background: transparent; border: transparent">
             <i class="fa fa-edit" area-hidden="true" style="color: blue" title="Edit Room Setup"></i>
           </button>
-          <button kendoButton type="button" style="background: transparent; border: transparent" *ngIf='showTrash' (click)="open('dialog'); saveRow(dataItem);">
+          <button kendoGridRemoveButton type="button" style="background: transparent; border: transparent">
             <i class="fa fa-trash" area-hidden="true" style="color: blue" title="Delete Room Setup"></i>
           </button>
           <button kendoGridSaveCommand type="button" [disabled]="myForm.invalid">
@@ -78,7 +78,7 @@
         <li>Click on Buildings and Resources.</li>
         <li>Under Resource Management, click on Edit Resources.</li>
         <li>In Resources Grid, locate and click on Room row.</li>
-        <li>A detail page for the room should appear, and the email for the room should be on the left-hand side, entitled "Resource email." Select and copy email text to insert into column.</li>
+        <li >A detail page for the room should appear, and the email for the room should be on the left-hand side, entitled "Resource email." Select and copy email text to insert into column.</li>
       </ol>
     </kendo-window>
   </form>
