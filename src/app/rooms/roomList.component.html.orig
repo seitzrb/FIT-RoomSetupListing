@@ -1,0 +1,102 @@
+<div class="listPadding" *ngIf='gridData'>
+  <form novalidate #myForm="ngForm">
+    <kendo-grid
+      [kendoGridTemplateEditing]="createNewRoom"
+      [data]="gridData"
+      [height]="610"
+      [data]="gridData"
+      [pageSize]="state.take"
+      [skip]="state.skip"
+      [sort]="state.sort"
+      [filter]="state.filter"
+      [sortable]="true"
+      [pageable]="true"
+      [filterable]="true"
+      [navigable]="true"
+      (edit)="editHandler($event)"
+      (save)="saveHandler($event)"
+<<<<<<< HEAD
+      (remove)="removeHandler($event); open('dialog')"
+=======
+      (remove)="removeHandler($event); open('dialog');"
+>>>>>>> 94ef6c401930e230c7d2449090277813d5a8473d
+      (add)="addHandler($event, myForm)"
+      (cancel)="cancelHandler($event)"
+      (dataStateChange)="dataStateChange($event)">
+      <ng-template kendoGridToolbarTemplate kendoTooltip>
+        <button kendoGridAddCommand type="button" title="Add New Room Setup">
+          <i class="fa fa-plus" area-hidden="true" style="color: blue" title="Add New Room Setup"></i>
+        </button>
+      </ng-template>
+      <kendo-grid-column field="roomId" title="ID" width="100" [hidden]=true>
+      </kendo-grid-column>
+      <kendo-grid-column field="name" title="Name" width="350">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.name" name="name" class="k-textbox" required/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="email" title="Gmail Address" [sortable]="true" title="Sort by Email">
+        <ng-template kendoGridHeaderTemplate>
+          Gmail Address
+          <button kendoButton type="button" [primary]="true" style="background: transparent; border: transparent" *ngIf="!dialogOpened && !windowOpened" (click)="open('window')">
+            <i class="fa fa-info-circle" area-hidden="true" style="color: blue" title="GMail Search Instructions"></i>
+          </button>
+        </ng-template>
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.email" name="email" class="k-textbox" required>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="capacity" title="Capacity" editor="numeric" filter="numeric" format="{0:n0}" width="155">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.capacity" name="capacity" class="k-textbox" type="number" required/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-command-column title="" width="100" >
+        <ng-template kendoGridCellTemplate let-isNew="isNew" let-dataItem>
+          <button kendoGridEditCommand type="button" [primary]="true" style="background: transparent; border: transparent">
+            <i class="fa fa-edit" area-hidden="true" style="color: blue" title="Edit Room Setup"></i>
+          </button>
+<<<<<<< HEAD
+          <button kendoGridRemoveCommand type="button" style="background: transparent; border: transparent" >
+=======
+          <button kendoGridRemoveButton type="button" style="background: transparent; border: transparent">
+>>>>>>> 94ef6c401930e230c7d2449090277813d5a8473d
+            <i class="fa fa-trash" area-hidden="true" style="color: blue" title="Delete Room Setup"></i>
+          </button>
+          <button kendoGridSaveCommand type="button" [disabled]="myForm.invalid">
+            <i class="fa fa-save" area-hidden="true" style="color: blue" title="Save Room Setup"></i>
+          </button>
+          <button kendoGridCancelCommand type="button">
+            <i class="fa fa-ban" area-hidden="true" style="color: blue" title="Cancel"></i>
+          </button>
+        </ng-template>
+      </kendo-grid-command-column>
+    </kendo-grid>
+    <kendo-dialog title="Please confirm" *ngIf="dialogOpened" (close)="close('dialog')" [minWidth]="250" [width]="450">
+      <p style="margin: 30px; text-align: center;">Are you sure you want to delete {{ roomToDelete.name }}?</p>
+      <kendo-dialog-actions>
+        <button kendoButton (click)="close('dialog')">No</button>
+        <button kendoButton primary="true" (click)="deleteRoom(); close('dialog');">Yes</button>
+      </kendo-dialog-actions>
+    </kendo-dialog>
+    <kendo-window style="width: 400px;" [minWidth]="250" [minHeight]="125" title="Instructions on finding Gmail Address for a Room"
+                  *ngIf="windowOpened" (close)="close('window')">
+<<<<<<< HEAD
+      <ol>      
+=======
+      <ol>
+>>>>>>> 94ef6c401930e230c7d2449090277813d5a8473d
+        <li>In a Gmail Administrator account, click on Settings > Manage this Domain.</li>
+        <li>Click on Buildings and Resources.</li>
+        <li>Under Resource Management, click on Edit Resources.</li>
+        <li>In Resources Grid, locate and click on Room row.</li>
+<<<<<<< HEAD
+        <li style="width: 400px">A detail page for the room should appear, and the email for the room should be on 
+        the left-hand side, entitled "Resource EMail." Select and copy email text to insert into column.</li>
+=======
+        <li >A detail page for the room should appear, and the email for the room should be on the left-hand side, entitled "Resource email." Select and copy email text to insert into column.</li>
+>>>>>>> 94ef6c401930e230c7d2449090277813d5a8473d
+      </ol>
+    </kendo-window>
+  </form>
+</div>
