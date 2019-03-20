@@ -17,3 +17,5 @@ div.listPadding {
   content: "\\f148";
   font-family: FontAwesome;
 }
+
+li {width: 500px}

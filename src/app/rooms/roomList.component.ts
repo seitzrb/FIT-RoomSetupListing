@@ -60,9 +60,7 @@ export class RoomListComponent implements OnInit {
             this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
               this.rooms = roomEntries;
               this.gridData = process(this.rooms, this.state);
-            });            
-            this.showTrash = true;
-            sender.closeRow(rowIndex);
+
             this.notificationService.show({
               content: 'New room ' + dataItem.name + ' added successfully',
               hideAfter: 1600,
@@ -70,7 +68,9 @@ export class RoomListComponent implements OnInit {
               animation: { type: 'fade', duration: 400 },
               type: { style: 'success', icon: true }
           });
-
+        });
+        this.showTrash = true;
+        sender.closeRow(rowIndex);
         },
         err => {
           this.showTrash = true;
@@ -133,16 +133,8 @@ export class RoomListComponent implements OnInit {
     }
 
     removeHandler({sender, rowIndex, dataItem}) {
-      console.log(dataItem);
       this.roomToDelete = dataItem;
-      console.log('removeHandler');
-      // this.roomService.deleteRoom(room).subscribe(() => {
-      //   this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
-      //     this.rooms = roomEntries;
-      //     this.gridData = process(this.rooms, this.state);
-      //   });
-      // }
-      // );
+      this.roomToDelete = dataItem;
     }
 
     private closeEditor(grid, rowIndex = this.editedRowIndex) {
