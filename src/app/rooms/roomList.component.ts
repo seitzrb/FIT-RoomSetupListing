@@ -57,6 +57,10 @@ export class RoomListComponent implements OnInit {
       if (isNew) {
         this.roomService.postRoom(dataItem).subscribe(
           res => {
+            this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
+              this.rooms = roomEntries;
+              this.gridData = process(this.rooms, this.state);
+            });            
             this.showTrash = true;
             sender.closeRow(rowIndex);
             this.notificationService.show({
@@ -84,7 +88,10 @@ export class RoomListComponent implements OnInit {
         this.roomService.putRoom(dataItem).subscribe(
           res => {
             sender.closeRow(rowIndex);
-            this.notificationService.show({
+            this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
+              this.rooms = roomEntries;
+              this.gridData = process(this.rooms, this.state);
+            });            this.notificationService.show({
               content: 'Room ' + dataItem.name + ' updated successfully',
               hideAfter: 1600,
               position: { horizontal: 'center', vertical: 'top' },
@@ -126,14 +133,16 @@ export class RoomListComponent implements OnInit {
     }
 
     removeHandler({sender, rowIndex, dataItem}) {
+      console.log(dataItem);
+      this.roomToDelete = dataItem;
       console.log('removeHandler');
-      this.roomService.deleteRoom(dataItem).subscribe(() => {
-        this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
-          this.rooms = roomEntries;
-          this.gridData = process(this.rooms, this.state);
-        });
-      }
-      );
+      // this.roomService.deleteRoom(room).subscribe(() => {
+      //   this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
+      //     this.rooms = roomEntries;
+      //     this.gridData = process(this.rooms, this.state);
+      //   });
+      // }
+      // );
     }
 
     private closeEditor(grid, rowIndex = this.editedRowIndex) {
@@ -143,7 +152,7 @@ export class RoomListComponent implements OnInit {
       this.editedRoom = undefined;
   }
 
-  public saveRow(room: Room) {
+  public saveRow({sender, rowIndex, room}) {
     console.log(room);
     this.roomToDelete = room;
   }
