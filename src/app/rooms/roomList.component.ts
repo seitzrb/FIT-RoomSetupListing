@@ -25,7 +25,7 @@ export class RoomListComponent implements OnInit {
 
     public state: State = {
       skip: 0,
-      take: 200,
+      take: 15,
       sort:  [{
         field: 'name',
         dir: 'asc'
@@ -57,10 +57,12 @@ export class RoomListComponent implements OnInit {
       if (isNew) {
         this.roomService.postRoom(dataItem).subscribe(
           res => {
+            this.showTrash = true;
+            sender.closeRow(rowIndex);
             this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
               this.rooms = roomEntries;
               this.gridData = process(this.rooms, this.state);
-
+            });
             this.notificationService.show({
               content: 'New room ' + dataItem.name + ' added successfully',
               hideAfter: 1600,
@@ -68,12 +70,14 @@ export class RoomListComponent implements OnInit {
               animation: { type: 'fade', duration: 400 },
               type: { style: 'success', icon: true }
           });
-        });
-        this.showTrash = true;
-        sender.closeRow(rowIndex);
+
         },
         err => {
           this.showTrash = true;
+          this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
+            this.rooms = roomEntries;
+            this.gridData = process(this.rooms, this.state);
+          });
           this.notificationService.show({
             content: 'Error during insert of ' + dataItem.name + '. Record not inserted',
             hideAfter: 1600,
@@ -88,10 +92,7 @@ export class RoomListComponent implements OnInit {
         this.roomService.putRoom(dataItem).subscribe(
           res => {
             sender.closeRow(rowIndex);
-            this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
-              this.rooms = roomEntries;
-              this.gridData = process(this.rooms, this.state);
-            });            this.notificationService.show({
+            this.notificationService.show({
               content: 'Room ' + dataItem.name + ' updated successfully',
               hideAfter: 1600,
               position: { horizontal: 'center', vertical: 'top' },
@@ -133,8 +134,14 @@ export class RoomListComponent implements OnInit {
     }
 
     removeHandler({sender, rowIndex, dataItem}) {
-      this.roomToDelete = dataItem;
-      this.roomToDelete = dataItem;
+      console.log('removeHandler');
+      this.roomService.deleteRoom(dataItem).subscribe(() => {
+        this.roomService.getRooms().subscribe((roomEntries: Room[]) => {
+          this.rooms = roomEntries;
+          this.gridData = process(this.rooms, this.state);
+        });
+      }
+      );
     }
 
     private closeEditor(grid, rowIndex = this.editedRowIndex) {
@@ -144,7 +151,7 @@ export class RoomListComponent implements OnInit {
       this.editedRoom = undefined;
   }
 
-  public saveRow({sender, rowIndex, room}) {
+  public saveRow(room: Room) {
     console.log(room);
     this.roomToDelete = room;
   }

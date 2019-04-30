@@ -1,5 +1,5 @@
 import { Room } from './../../models/room/room';
-import { Injectable } from '@angular/core';
+import { Injectable, ɵConsole } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
@@ -10,9 +10,9 @@ import { tap, catchError } from 'rxjs/operators';
 
 export class RoomService {
   // api/products/products.json
-    roomUrl = 'https://vard12.lc.gov/dataservices/WebApi/RoomSetup/api/Room';
+    roomUrly = 'https://vard12.lc.gov/dataservices/WebApi/RoomSetup/api/Room';
     roomUrlx = 'src/api/roomdata/rooms.json';
-
+    roomUrl = 'http://5cc8a05e2dcd9d0014769122.mockapi.io/brendenRoom/rooms';
     constructor(private http: HttpClient) {  }
 
     getRooms(): Observable<Room[]> {
@@ -29,6 +29,7 @@ export class RoomService {
       const roomUrl = this.roomUrl + '/' + room.roomId;
       console.log('UpdateCall');
       console.log(room);
+      console.log(roomUrl);
 
       return this.http.put<Room>(roomUrl, room)
         .pipe(

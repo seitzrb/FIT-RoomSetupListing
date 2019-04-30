@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   declarations: []
 })
 export class Room {
-  roomId: number;
+  roomId: string;
   name: string;
   email: string;
   capacity: number;
